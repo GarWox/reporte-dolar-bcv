@@ -1,0 +1,27 @@
+name: Monitor Dólar BCV
+
+on:
+  schedule:
+    - cron: "0 */7 * * *" # todos los días a las 13:00 UTC
+  workflow_dispatch: # permite ejecutarlo manualmente
+
+jobs:
+  run-monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monitor
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python monitor.py
