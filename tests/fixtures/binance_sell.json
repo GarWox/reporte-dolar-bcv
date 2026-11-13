@@ -1,0 +1,21 @@
+{
+  "code": "000000",
+  "message": null,
+  "data": [
+    {
+      "adv": {
+        "advNo": "12900000000000000000",
+        "price": "40.90",
+        "asset": "USDT",
+        "fiatUnit": "VES",
+        "tradeType": "SELL"
+      },
+      "advertiser": {
+        "nickName": "demo",
+        "userType": "user"
+      }
+    }
+  ],
+  "total": 1,
+  "success": true
+}

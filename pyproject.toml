@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reporte-dolar-bcv"
+version = "2.0.0"
+description = "Reporte de la tasa oficial del BCV y del P2P de Binance para Venezuela"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gary Chin" }]
+keywords = ["bcv", "binance", "venezuela", "divisas", "scraping", "python"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "beautifulsoup4>=4.12",
+  "python-dotenv>=1.0",
+  "requests>=2.31",
+]
+
+[project.urls]
+Homepage = "https://github.com/GarWox/reporte-dolar-bcv"
+Issues = "https://github.com/GarWox/reporte-dolar-bcv/issues"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "responses>=0.25",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+dolar-monitor = "dolar_monitor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
