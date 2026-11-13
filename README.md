@@ -20,6 +20,14 @@ Diferencia vs BCV
   Venta   +11.79%
 ```
 
+## Demo
+
+Reporte real publicado en el canal de Discord por el workflow programado:
+
+![Reporte de divisas publicado en Discord](docs/discord-embed.png)
+
+También puedes ver el historial de ejecuciones en [GitHub Actions](https://github.com/GarWox/reporte-dolar-bcv/actions/workflows/monitor.yml).
+
 ## Qué resuelve
 
 Consultar el dólar a mano todos los días es repetitivo y propenso a errores de formato (`36,5872` vs `36.5872`). Este proyecto automatiza la recolección, normaliza los números, valida que las tasas sean coherentes y deja el resultado en un formato consumible por personas (`texto`), por otros programas (`--json`) y por un canal de alertas (Discord).
@@ -96,22 +104,22 @@ También queda disponible el comando `dolar-monitor` tras instalar el paquete.
 
 ### Códigos de salida
 
-| Código | Significado |
-|---|---|
-| 0 | Reporte generado (aunque falte una fuente) |
-| 1 | Ninguna fuente respondió |
-| 2 | Se pidió Discord sin `DISCORD_WEBHOOK_URL` |
-| 3 | Falló el envío a Discord |
+| Código | Significado                                |
+| ------ | ------------------------------------------ |
+| 0      | Reporte generado (aunque falte una fuente) |
+| 1      | Ninguna fuente respondió                   |
+| 2      | Se pidió Discord sin `DISCORD_WEBHOOK_URL` |
+| 3      | Falló el envío a Discord                   |
 
 ## Configuración
 
-| Variable | Default | Descripción |
-|---|---|---|
-| `DISCORD_WEBHOOK_URL` | vacío | Webhook de Discord. Sin él, solo se imprime en consola. |
-| `HTTP_TIMEOUT` | `15` | Timeout de red en segundos. |
-| `LOG_LEVEL` | `INFO` | `DEBUG`, `INFO`, `WARNING` o `ERROR`. |
-| `BCV_URL` | `https://www.bcv.org.ve/` | Permite apuntar a un fixture o proxy. |
-| `BINANCE_URL` | endpoint P2P | Permite apuntar a un mock. |
+| Variable              | Default                   | Descripción                                             |
+| --------------------- | ------------------------- | ------------------------------------------------------- |
+| `DISCORD_WEBHOOK_URL` | vacío                     | Webhook de Discord. Sin él, solo se imprime en consola. |
+| `HTTP_TIMEOUT`        | `15`                      | Timeout de red en segundos.                             |
+| `LOG_LEVEL`           | `INFO`                    | `DEBUG`, `INFO`, `WARNING` o `ERROR`.                   |
+| `BCV_URL`             | `https://www.bcv.org.ve/` | Permite apuntar a un fixture o proxy.                   |
+| `BINANCE_URL`         | endpoint P2P              | Permite apuntar a un mock.                              |
 
 ## Docker
 
@@ -166,14 +174,6 @@ src/dolar_monitor/
 └── notifiers/        # discord.py
 tests/                # pytest + responses + fixtures
 ```
-
-## Roadmap
-
-- [ ] Guardar histórico en SQLite y calcular variación diaria.
-- [ ] Dashboard local con Streamlit sobre la salida JSON.
-- [ ] Segunda fuente P2P para contrastar precios.
-- [ ] Notificar solo cuando la brecha supere un umbral configurable.
-- [ ] Empaquetar imagen en GHCR.
 
 ## Aviso
 
